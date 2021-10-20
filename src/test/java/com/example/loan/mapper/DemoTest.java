@@ -1,5 +1,6 @@
-package com.example.loan;
+package com.example.loan.mapper;
 
+import com.example.loan.mapper.Demo;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

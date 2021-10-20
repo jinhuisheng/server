@@ -5,6 +5,7 @@
 - Java JDK 1.8
 - IntelliJ IDEA
 - Docker
+- Maven
 
 ## 测试
 
