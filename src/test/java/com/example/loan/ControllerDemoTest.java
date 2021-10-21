@@ -2,7 +2,6 @@ package com.example.loan;
 
 import com.example.loan.mapper.Demo;
 import com.example.loan.mapper.DemoMapper;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,7 +57,7 @@ public class ControllerDemoTest {
         demo.setUpdatedAt(LocalDateTime.now());
         demoMapper.insert(demo);
         List<Demo> userList = demoMapper.selectList(null);
-        Assert.assertEquals(1, userList.size());
+        assertEquals(1, userList.size());
         userList.forEach(System.out::println);
     }
 
