@@ -10,6 +10,7 @@
         <result property="idCard" column="id_card"/>
         <result property="gender" column="gender"/>
         <result property="income" column="income"/>
+        <result property="lenderAge" column="lender_age"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
 

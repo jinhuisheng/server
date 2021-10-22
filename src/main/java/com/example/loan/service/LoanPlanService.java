@@ -24,18 +24,12 @@ public class LoanPlanService {
          *               ->  贷款利率 loanInterestRate
          *
          */
-        int maxLoanPeriod = getMaxLoanPeriod(loanPlanForm.getIdCard());
+        UserLoanPlanMaterial userLoanPlanMaterial = userLoanPlanMaterialMapper.selectUserLoanPlanMaterial(loanPlanForm.getIdCard());
+        int maxLoanPeriod = LoanPeriod.count(userLoanPlanMaterial.getGender(), userLoanPlanMaterial.getLenderAge()
+                , userLoanPlanMaterial.getHouseMaterial().getHouseAge());
         BigDecimal maxLoanProportion = maxLoanProportion(loanPlanForm.getIdCard());
         BigDecimal loanInterestRate = getLoanInterestRate(loanPlanForm.getIdCard());
         return new LoanPlan(true, maxLoanProportion, maxLoanPeriod, loanInterestRate);
-    }
-
-    private int getMaxLoanPeriod(String idCard) {
-//        userService.getUser(idCard);
-        int lenderAge = 35;
-        int purchaseHouseAge = 0;
-        Gender gender = Gender.MALE;
-        return LoanPeriod.count(gender, lenderAge, purchaseHouseAge);
     }
 
     private BigDecimal getLoanInterestRate(String idCard) {

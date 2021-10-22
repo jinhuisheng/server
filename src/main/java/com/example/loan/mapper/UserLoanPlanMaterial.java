@@ -16,18 +16,22 @@ public class UserLoanPlanMaterial {
     private String name;
     private Gender gender;
     private BigDecimal income;
+    private Integer lenderAge;
+
     private TogetherLender togetherLender;
-    private String togetherLenderIdCard;
-    private String togetherLenderName;
-    private BigDecimal togetherLenderIncome;
+//    private String togetherLenderIdCard;
+//    private String togetherLenderName;
+//    private BigDecimal togetherLenderIncome;
+
     private HouseMaterial houseMaterial;
-    private Integer houseAge;
-    private BigDecimal housePrice;
+//    private Integer houseAge;
+//    private BigDecimal housePrice;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public void loadHouseAndTogetherLender() {
-        this.houseMaterial = new HouseMaterial(houseAge, housePrice);
-        this.togetherLender = new TogetherLender(togetherLenderIdCard, togetherLenderName, togetherLenderIncome);
+//        this.houseMaterial = new HouseMaterial(houseAge, housePrice);
+//        this.togetherLender = new TogetherLender(togetherLenderIdCard, togetherLenderName, togetherLenderIncome);
     }
 }

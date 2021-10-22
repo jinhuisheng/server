@@ -36,6 +36,7 @@ public class LoanControllerTest {
 
     @Test
     public void should_get_loan_plan_success() throws Exception {
+        givenLoadPlanMaterialData();
         String requestJson = "{\"idCard\":\"412234343434343\",\"loanPeriod\":20}";
         String result = mockMvc.perform(
                         post("/loan-plans")
@@ -46,5 +47,9 @@ public class LoanControllerTest {
                 .getResponse()
                 .getContentAsString();
         assertThat(result).isEqualTo("{\"canLoan\":true,\"maxLoanProportion\":0.7,\"maxLoanPeriod\":30,\"loanInterestRate\":0.0425}");
+    }
+
+    private void givenLoadPlanMaterialData() {
+
     }
 }

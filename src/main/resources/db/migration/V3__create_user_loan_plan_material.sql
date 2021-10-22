@@ -2,6 +2,7 @@ CREATE TABLE `user_loan_plan_material`
 (
     `id`         int(11) NOT NULL AUTO_INCREMENT,
     `name`       varchar(100) NOT NULL,
+    `lender_age`             int(11) NOT NULL,
     `id_card`    varchar(100) NOT NULL,
     `gender`     varchar(20)  NOT NULL,
     `income`     decimal      NOT NULL,
