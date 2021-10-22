@@ -21,12 +21,15 @@ public class LoanPlanService {
         return new LoanPlan(true, maxLoanProportion, maxLoanPeriod, loanInterestRate);
     }
 
-    private BigDecimal getLoanInterestRate(String idCard) {
-        return BigDecimal.valueOf(0.0425);
+    private int getMaxLoanPeriod(String idCard) {
+        int lenderAge = 35;
+        int purchaseHouseAge = 0;
+        Gender gender = Gender.MALE;
+        return LoanPeriod.count(gender, lenderAge, purchaseHouseAge);
     }
 
-    private int getMaxLoanPeriod(String idCard) {
-        return 30;
+    private BigDecimal getLoanInterestRate(String idCard) {
+        return BigDecimal.valueOf(0.0425);
     }
 
     private BigDecimal maxLoanProportion(String idCard) {
