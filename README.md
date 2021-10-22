@@ -7,6 +7,15 @@
 - Docker
 - Maven
 
+### 技术栈
+- Java
+- Springboot
+- MyBatis (MyBatis-Plus)
+- Junit4
+- Jmockit
+- h2
+- Assertj 
+
 ## 测试
 
 - 接口测试 使用 MockMvc 测试
