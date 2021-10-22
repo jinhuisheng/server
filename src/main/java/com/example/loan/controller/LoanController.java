@@ -1,17 +1,22 @@
 package com.example.loan.controller;
 
+import com.example.loan.service.LoanPlanService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-
 @RestController
 @RequestMapping("loan-plans")
 public class LoanController {
+    private LoanPlanService loanPlanService;
+
+    public LoanController(LoanPlanService loanPlanService) {
+        this.loanPlanService = loanPlanService;
+    }
+
     @PostMapping
-    public LoanPlan audit(@RequestBody LoanPlanForm loanPlanForm) {
-        return new LoanPlan(true, BigDecimal.valueOf(0.7), 30, BigDecimal.valueOf(0.0425));
+    public LoanPlan query(@RequestBody LoanPlanForm loanPlanForm) {
+        return loanPlanService.query(loanPlanForm);
     }
 }
