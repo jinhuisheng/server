@@ -8,18 +8,19 @@
 - Maven
 
 ### 技术栈
+
 - Java
 - Springboot
 - MyBatis (MyBatis-Plus)
 - Junit4
-- Jmockit
+- JMockit
 - h2
-- Assertj 
+- Assertj
 
 ## 测试
 
 - 接口测试 使用 MockMvc 测试
-- 单元测试 使用 JUnit5
+- 单元测试 使用 JUnit4 + JMockito + AssertJ
 
 ## 命令行操作
 
