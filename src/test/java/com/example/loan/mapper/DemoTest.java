@@ -1,14 +1,14 @@
 package com.example.loan.mapper;
 
-import com.example.loan.mapper.Demo;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 public class DemoTest {
     @Test
-    void should_success() {
+    public void should_success() {
         int input = 1;
         Integer result = Demo.of(input);
         int expected = 1;
