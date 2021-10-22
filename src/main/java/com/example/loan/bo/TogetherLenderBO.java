@@ -1,6 +1,9 @@
-package com.example.loan.mapper;
+package com.example.loan.bo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +12,10 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TogetherLender {
+@Builder
+public class TogetherLenderBO {
+    @TableId(type = IdType.AUTO)
+    private Long id;
     private String togetherLenderIdCard;
     private String togetherLenderName;
     private BigDecimal togetherLenderIncome;

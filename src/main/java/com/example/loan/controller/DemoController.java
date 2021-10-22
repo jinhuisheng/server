@@ -1,6 +1,6 @@
 package com.example.loan.controller;
 
-import com.example.loan.mapper.Demo;
+import com.example.loan.mapper.DemoBO;
 import com.example.loan.service.DemoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ public class DemoController {
 
 
     @GetMapping
-    public Demo test() {
+    public DemoBO test() {
         return demoService.getDemo("1");
     }
 }

@@ -1,6 +1,12 @@
 package com.example.loan.controller;
 
 import com.example.loan.LoanServerApplication;
+import com.example.loan.mapper.HouseMaterialMapper;
+import com.example.loan.mapper.TogetherLenderMapper;
+import com.example.loan.mapper.UserLoanPlanMaterialMapper;
+import com.example.loan.mapper.entity.HouseMaterialEntity;
+import com.example.loan.mapper.entity.TogetherLenderEntity;
+import com.example.loan.mapper.entity.UserLoanPlanMaterialEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +21,11 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import static com.example.loan.service.Gender.MALE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,6 +37,13 @@ public class LoanControllerTest {
     MockMvc mockMvc;
     @Autowired
     private WebApplicationContext webApplicationContext;
+    @Autowired
+    private UserLoanPlanMaterialMapper userLoanPlanMaterialMapper;
+    @Autowired
+    HouseMaterialMapper houseMaterialMapper;
+    @Autowired
+    private TogetherLenderMapper togetherLenderEntityMapper;
+
 
     @Before
     public void setUp() {
@@ -37,7 +53,7 @@ public class LoanControllerTest {
     @Test
     public void should_get_loan_plan_success() throws Exception {
         givenLoadPlanMaterialData();
-        String requestJson = "{\"idCard\":\"412234343434343\",\"loanPeriod\":20}";
+        String requestJson = "{\"idCard\":\"412233333333\",\"loanPeriod\":20}";
         String result = mockMvc.perform(
                         post("/loan-plans")
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -50,6 +66,29 @@ public class LoanControllerTest {
     }
 
     private void givenLoadPlanMaterialData() {
+        UserLoanPlanMaterialEntity entity = new UserLoanPlanMaterialEntity();
+        entity.setGender(MALE);
+        entity.setIncome(BigDecimal.valueOf(10000));
+        entity.setLenderAge(35);
+        entity.setIdCard("412233333333");
+        entity.setName("王一");
+        entity.setCreatedAt(LocalDateTime.now());
+        entity.setUpdatedAt(LocalDateTime.now());
+        userLoanPlanMaterialMapper.insert(entity);
+
+        HouseMaterialEntity houseMaterialEntity = new HouseMaterialEntity();
+        houseMaterialEntity.setLoanPlanMaterialId(entity.getId());
+        houseMaterialEntity.setHouseAge(0);
+        houseMaterialEntity.setHousePrice(BigDecimal.valueOf(10000));
+        houseMaterialMapper.insert(houseMaterialEntity);
+
+        TogetherLenderEntity togetherLenderEntity = new TogetherLenderEntity();
+        togetherLenderEntity.setTogetherLenderIdCard("111111111");
+        togetherLenderEntity.setTogetherLenderName("xxxx");
+        togetherLenderEntity.setTogetherLenderIncome(BigDecimal.valueOf(10000));
+        togetherLenderEntity.setLoanPlanMaterialId(entity.getId());
+        togetherLenderEntityMapper.insert(togetherLenderEntity);
+
 
     }
 }

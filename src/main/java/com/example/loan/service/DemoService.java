@@ -1,6 +1,6 @@
 package com.example.loan.service;
 
-import com.example.loan.mapper.Demo;
+import com.example.loan.mapper.DemoBO;
 import com.example.loan.mapper.DemoMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class DemoService {
         return thirdService.sayHello();
     }
 
-    public Demo getDemo(String name) {
+    public DemoBO getDemo(String name) {
         return demoMapper.selectDemoByName(name);
     }
 }

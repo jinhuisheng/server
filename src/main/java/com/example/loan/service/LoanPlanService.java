@@ -1,20 +1,20 @@
 package com.example.loan.service;
 
+import com.example.loan.bo.UserLoanPlanMaterialBO;
 import com.example.loan.controller.LoanPlan;
 import com.example.loan.controller.LoanPlanForm;
-import com.example.loan.mapper.UserLoanPlanMaterial;
-import com.example.loan.mapper.UserLoanPlanMaterialMapper;
+import com.example.loan.dao.UserLoanPlanMaterialDAO;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
 public class LoanPlanService {
-    private UserLoanPlanMaterialMapper userLoanPlanMaterialMapper;
+    private UserLoanPlanMaterialDAO userLoanPlanMaterialDAO;
 
 
-    public LoanPlanService(UserLoanPlanMaterialMapper userLoanPlanMaterialMapper) {
-        this.userLoanPlanMaterialMapper = userLoanPlanMaterialMapper;
+    public LoanPlanService(UserLoanPlanMaterialDAO userLoanPlanMaterialDAO) {
+        this.userLoanPlanMaterialDAO = userLoanPlanMaterialDAO;
     }
 
     public LoanPlan query(LoanPlanForm loanPlanForm) {
@@ -24,9 +24,9 @@ public class LoanPlanService {
          *               ->  贷款利率 loanInterestRate
          *
          */
-        UserLoanPlanMaterial userLoanPlanMaterial = userLoanPlanMaterialMapper.selectUserLoanPlanMaterial(loanPlanForm.getIdCard());
+        UserLoanPlanMaterialBO userLoanPlanMaterial = userLoanPlanMaterialDAO.selectUserLoanPlanMaterial(loanPlanForm.getIdCard());
         int maxLoanPeriod = LoanPeriod.count(userLoanPlanMaterial.getGender(), userLoanPlanMaterial.getLenderAge()
-                , userLoanPlanMaterial.getHouseMaterial().getHouseAge());
+                , userLoanPlanMaterial.getHouseMaterialBO().getHouseAge());
         BigDecimal maxLoanProportion = maxLoanProportion(loanPlanForm.getIdCard());
         BigDecimal loanInterestRate = getLoanInterestRate(loanPlanForm.getIdCard());
         return new LoanPlan(true, maxLoanProportion, maxLoanPeriod, loanInterestRate);
@@ -40,9 +40,8 @@ public class LoanPlanService {
         return BigDecimal.valueOf(0.7);
     }
 
-    public UserLoanPlanMaterial getUserLoadPlanMaterial(String idCard) {
-        UserLoanPlanMaterial userLoanPlanMaterial = userLoanPlanMaterialMapper.selectUserLoanPlanMaterial(idCard);
-        userLoanPlanMaterial.loadHouseAndTogetherLender();
+    public UserLoanPlanMaterialBO getUserLoadPlanMaterial(String idCard) {
+        UserLoanPlanMaterialBO userLoanPlanMaterial = userLoanPlanMaterialDAO.selectUserLoanPlanMaterial(idCard);
         return userLoanPlanMaterial;
     }
 }

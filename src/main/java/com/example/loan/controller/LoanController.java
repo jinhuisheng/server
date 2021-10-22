@@ -1,6 +1,6 @@
 package com.example.loan.controller;
 
-import com.example.loan.mapper.UserLoanPlanMaterial;
+import com.example.loan.bo.UserLoanPlanMaterialBO;
 import com.example.loan.service.LoanPlanService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class LoanController {
     }
 
     @GetMapping("/{idCard}")
-    public UserLoanPlanMaterial getUserLoadPlanMaterial(@PathVariable String idCard) {
+    public UserLoanPlanMaterialBO getUserLoadPlanMaterial(@PathVariable String idCard) {
         return loanPlanService.getUserLoadPlanMaterial(idCard);
     }
 
