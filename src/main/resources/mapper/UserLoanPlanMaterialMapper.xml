@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.mapper.DemoMapper">
+
+    <resultMap type="com.example.loan.mapper.Demo" id="DemoResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <sql id="selectDemoVo">
+        select id, name, created_at, updated_at
+        from demo
+    </sql>
+
+    <select id="selectDemoByName" parameterType="String" resultType="com.example.loan.mapper.Demo">
+        <include refid="selectDemoVo"/>
+        where name = #{name}
+    </select>
+
+</mapper>
