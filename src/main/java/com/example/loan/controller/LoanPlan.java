@@ -14,5 +14,5 @@ public class LoanPlan {
     private Boolean canLoan;
     private BigDecimal maxLoanProportion;
     private Integer maxLoanPeriod;
-    private BigDecimal maxLoanInterestRate;
+    private BigDecimal loanInterestRate;
 }

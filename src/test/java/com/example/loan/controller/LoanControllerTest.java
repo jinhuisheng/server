@@ -45,6 +45,6 @@ public class LoanControllerTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        assertThat(result).isEqualTo("{\"canLoan\":true,\"maxLoanProportion\":0.7,\"maxLoanPeriod\":30,\"maxLoanInterestRate\":0.0425}");
+        assertThat(result).isEqualTo("{\"canLoan\":true,\"maxLoanProportion\":0.7,\"maxLoanPeriod\":30,\"loanInterestRate\":0.0425}");
     }
 }
