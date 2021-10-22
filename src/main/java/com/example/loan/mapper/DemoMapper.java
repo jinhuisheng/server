@@ -1,6 +1,7 @@
 package com.example.loan.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface DemoMapper {
+public interface DemoMapper extends BaseMapper<Demo> {
     Demo selectDemoByName(String name);
 }

@@ -2,23 +2,40 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.loan.mapper.DemoMapper">
+<mapper namespace="com.example.loan.mapper.UserLoanPlanMaterialMapper">
 
-    <resultMap type="com.example.loan.mapper.Demo" id="DemoResult">
+    <resultMap type="com.example.loan.mapper.UserLoanPlanMaterial" id="UserLoanPlanMaterialResult">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="idCard" column="id_card"/>
+        <result property="gender" column="gender"/>
+        <result property="income" column="income"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
+
+        <!-- 一对一关联：单向。方式零：使用级联属性 -->
+        <result property="togetherLender.togetherLenderIdCard" column="together_lender_id_card"/>
+        <result property="togetherLender.togetherLenderIncome" column="together_lender_income"/>
+        <result property="togetherLender.togetherLenderName" column="together_lender_name"/>
+        <!-- 房产资料 -->
+        <result property="houseMaterial.houseAge" column="house_age"/>
+        <result property="houseMaterial.housePrice" column="house_price"/>
     </resultMap>
 
-    <sql id="selectDemoVo">
-        select id, name, created_at, updated_at
-        from demo
-    </sql>
-
-    <select id="selectDemoByName" parameterType="String" resultType="com.example.loan.mapper.Demo">
-        <include refid="selectDemoVo"/>
-        where name = #{name}
+    <select id="selectUserLoanPlanMaterial" parameterType="String"
+            resultType="com.example.loan.mapper.UserLoanPlanMaterial">
+        SELECT plan.*,
+               house.*,
+               lender.*,
+               house.house_age as house_age,
+               house.price     as house_price,
+               lender.id_card  as together_lender_id_card,
+               lender.name     as together_lender_name,
+               lender.income   as together_lender_income
+        FROM `user_loan_plan_material` as plan
+                 left join house_material as house on house.loan_plan_material_id = plan.id
+                 left join together_lender as lender on lender.loan_plan_material_id = plan.id
+        where plan.id_card = #{idCard}
     </select>
 
 </mapper>
