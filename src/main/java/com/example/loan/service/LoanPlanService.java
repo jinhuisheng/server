@@ -22,6 +22,7 @@ public class LoanPlanService {
     }
 
     private int getMaxLoanPeriod(String idCard) {
+//        userService.getUser(idCard);
         int lenderAge = 35;
         int purchaseHouseAge = 0;
         Gender gender = Gender.MALE;

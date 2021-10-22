@@ -24,7 +24,7 @@ public class DemoServiceTest {
             }
         };
 
-        DemoService demoService = new DemoService(thirdService);
+        DemoService demoService = new DemoService(thirdService, null);
         //测试代码
         assertThat(demoService.sayHello()).isEqualTo("hahahaha");
 
