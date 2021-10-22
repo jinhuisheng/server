@@ -39,7 +39,7 @@ public class ControllerDemoTest {
     }
 
     @Test
-    public void should_return_receipt_when_scan_barcode() throws Exception {
+    public void demo_test() throws Exception {
         String result = mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andReturn()
